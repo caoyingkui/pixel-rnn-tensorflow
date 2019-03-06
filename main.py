@@ -52,6 +52,8 @@ tf.set_random_seed(conf.random_seed)
 np.random.seed(conf.random_seed)
 
 def main(_):
+
+  #conf 参数列表
   model_dir = get_model_dir(conf,
       ['data_dir', 'sample_dir', 'max_epoch', 'test_step', 'save_step',
        'is_train', 'random_seed', 'log_level', 'display'])
@@ -99,7 +101,7 @@ def main(_):
       for epoch in iterator:
         # 1. train
         total_train_costs = []
-        for idx in xrange(train_step_per_epoch):
+        for idx in range(int(train_step_per_epoch)):
           images = binarize(next_train_batch(conf.batch_size)) \
             .reshape([conf.batch_size, height, width, channel])
 
@@ -108,7 +110,7 @@ def main(_):
 
         # 2. test
         total_test_costs = []
-        for idx in xrange(test_step_per_epoch):
+        for idx in range(int(test_step_per_epoch)):
           images = binarize(next_test_batch(conf.batch_size)) \
             .reshape([conf.batch_size, height, width, channel])
 
